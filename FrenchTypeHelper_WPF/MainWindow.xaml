@@ -11,22 +11,31 @@
 
     
     <Grid>
-        <hc:NotifyIcon x:Name="NotifyIconContextContent"
-                       Text="French Type Helper!!!!!"
-                       Visibility="Visible"
-                       Icon="/Images/logo.ico">
+        <!-- <hc:NotifyIcon x:Name="NotifyIconContextContent" -->
+        <!--                Text="French Type Helper!!!!!" -->
+        <!--                Visibility="Visible" -->
+        <!--                Icon="/Images/logo.ico"> -->
+        <!--     <hc:NotifyIcon.ContextMenu> -->
+        <!--         <ContextMenu> -->
+        <!--             <MenuItem  Header="Setting"/> -->
+        <!--             <MenuItem  Header="Exit!" Click="Exit_OnClick"/> -->
+        <!--         </ContextMenu> -->
+        <!--     </hc:NotifyIcon.ContextMenu> -->
+        <!--     <hc:Interaction.Triggers> -->
+        <!--         <hc:EventTrigger EventName="Click"> -->
+        <!--             <hc:EventToCommand Command="hc:ControlCommands.PushMainWindow2Top"/> -->
+        <!--         </hc:EventTrigger> -->
+        <!--     </hc:Interaction.Triggers> -->
+        <!-- </hc:NotifyIcon> -->
+        <!-- <hc:NotifyIcon Text="HandyControl" IsBlink="true" Visibility="Visible" Icon="/HandyControlDemo;component/Resources/Img/icon-white.ico"/> -->
+        <hc:NotifyIcon Text="French Type Helper" Visibility="Visible" Loaded="NotifyIcon_OnLoaded">
             <hc:NotifyIcon.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Command="hc:ControlCommands.PushMainWindow2Top" Header="Setting"/>
-                    <MenuItem Command="hc:ControlCommands.ShutdownApp" Header="Exit"/>
+                    <MenuItem x:Name="StatusMenuItem" Click="Status_OnClick"/>
+                    <MenuItem Header="Setting" Click="Setting_OnClick" />
+                    <MenuItem Header="Exit" Click="Exit_OnClick"/>
                 </ContextMenu>
             </hc:NotifyIcon.ContextMenu>
-            <hc:Interaction.Triggers>
-                <hc:EventTrigger EventName="Click">
-                    <hc:EventToCommand Command="hc:ControlCommands.PushMainWindow2Top"/>
-                </hc:EventTrigger>
-            </hc:Interaction.Triggers>
         </hc:NotifyIcon>
-        
     </Grid>
 </Window>

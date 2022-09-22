@@ -65,12 +65,15 @@
             <DependentUpon>App.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Compile Include="KeyOperator\CoreOperator.cs" />
         <Compile Include="MainWindow.xaml.cs">
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="KeyOperator\HotKeyOperator.cs" />
+        <Compile Include="KeyOperator\IKeyOperator.cs" />
         <Compile Include="Properties\AssemblyInfo.cs">
             <SubType>Code</SubType>
         </Compile>
