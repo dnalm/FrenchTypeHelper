@@ -1,0 +1,1 @@
+﻿nuget.exe restore  .\FrenchTypeHelper.sln
