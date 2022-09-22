@@ -4,9 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrenchTypeHelper_WPF"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    
+
+    
     <Grid>
+        <hc:NotifyIcon x:Name="NotifyIconContextContent"
+                       Text="French Type Helper!!!!!"
+                       Visibility="Visible"
+                       Icon="/Images/logo.ico">
+            <hc:NotifyIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Command="hc:ControlCommands.PushMainWindow2Top" Header="Setting"/>
+                    <MenuItem Command="hc:ControlCommands.ShutdownApp" Header="Exit"/>
+                </ContextMenu>
+            </hc:NotifyIcon.ContextMenu>
+            <hc:Interaction.Triggers>
+                <hc:EventTrigger EventName="Click">
+                    <hc:EventToCommand Command="hc:ControlCommands.PushMainWindow2Top"/>
+                </hc:EventTrigger>
+            </hc:Interaction.Triggers>
+        </hc:NotifyIcon>
         
     </Grid>
 </Window>
