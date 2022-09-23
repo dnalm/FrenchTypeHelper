@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FrenchTypeHelper_WPF"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="1" Width="1">
     
 
     
@@ -28,7 +28,7 @@
         <!--     </hc:Interaction.Triggers> -->
         <!-- </hc:NotifyIcon> -->
         <!-- <hc:NotifyIcon Text="HandyControl" IsBlink="true" Visibility="Visible" Icon="/HandyControlDemo;component/Resources/Img/icon-white.ico"/> -->
-        <hc:NotifyIcon Text="French Type Helper" Visibility="Visible" Loaded="NotifyIcon_OnLoaded">
+        <hc:NotifyIcon Text="French Type Helper" Visibility="Visible" Loaded="NotifyIcon_OnLoaded" x:Name="NotifyIcon">
             <hc:NotifyIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="StatusMenuItem" Click="Status_OnClick"/>

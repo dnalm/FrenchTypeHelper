@@ -38,7 +38,7 @@
           <HintPath>..\packages\MouseKeyHook.5.6.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
         </Reference>
         <Reference Include="HandyControl, Version=3.3.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
-          <HintPath>..\packages\HandyControls.3.4.2\lib\net48\HandyControl.dll</HintPath>
+          <HintPath>..\packages\HandyControl.3.3.0\lib\net48\HandyControl.dll</HintPath>
         </Reference>
         <Reference Include="INIFileParser, Version=2.5.2.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
           <HintPath>..\packages\ini-parser.2.5.2\lib\net20\INIFileParser.dll</HintPath>
@@ -61,6 +61,22 @@
             <SubType>Designer</SubType>
         </ApplicationDefinition>
         <Compile Include="Settings.cs" />
+        <Compile Include="Utils\AutoStartUtil.cs" />
+        <Compile Include="Views\SettingPage\HotkeyPage.xaml.cs">
+          <DependentUpon>HotkeyPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\SettingPage\InterruptPage.xaml.cs">
+          <DependentUpon>InterruptPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\SettingPage\MappingPage.xaml.cs">
+          <DependentUpon>MappingPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\SettingPage\SystemPage.xaml.cs">
+          <DependentUpon>SystemPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\SettingWindow.xaml.cs">
+          <DependentUpon>SettingWindow.xaml</DependentUpon>
+        </Compile>
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -74,6 +90,11 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="Views\SettingPage\HotkeyPage.xaml" />
+        <Page Include="Views\SettingPage\InterruptPage.xaml" />
+        <Page Include="Views\SettingPage\MappingPage.xaml" />
+        <Page Include="Views\SettingPage\SystemPage.xaml" />
+        <Page Include="Views\SettingWindow.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="KeyOperator\HotKeyOperator.cs" />

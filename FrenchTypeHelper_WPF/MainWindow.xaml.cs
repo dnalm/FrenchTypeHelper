@@ -3,10 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using FrenchTypeHelper_WPF.KeyOperator;
+using FrenchTypeHelper_WPF.Views;
 using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 
 namespace FrenchTypeHelper_WPF
 {
@@ -17,16 +21,29 @@ namespace FrenchTypeHelper_WPF
     {
         public MainWindow()
         {
+            // Forbid multi instance
+            var processes = Process.GetProcesses();
+            if (processes.Count(p => p.ProcessName.Equals("FrenchTypeHelper_WPF")) > 1)
+            {
+                MessageBox.Show("FrenchTypeHelper has been running.", "FrenchTypeHelper", MessageBoxButton.OK, MessageBoxImage.Information);
+                System.Environment.Exit(1);
+            }
+            
             InitializeComponent();
         }
 
         private HotKeyOperator _hotKeyOperator;
         private CoreOperator _coreOperator;
 
+        private SettingWindow _settingWindow;
+
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
             
+            _settingWindow = new SettingWindow(this);
+            _settingWindow.Visibility = Visibility.Hidden;
+
             Dictionary<char, Dictionary<char, char>> mapping = new Dictionary<char, Dictionary<char, char>>();
 
             Dictionary<char, char> dict1 = new Dictionary<char, char>();
@@ -101,10 +118,16 @@ namespace FrenchTypeHelper_WPF
             if(_coreOperator.Enabled)
             {
                 StatusMenuItem.Header = "Enabled";
+                // todo
+                // StatusMenuItem.Icon = 
+                // NotifyIcon.Icon = 
             }
             else
             {
                 StatusMenuItem.Header = "Disabled";
+                // todo
+                // StatusMenuItem.Icon = 
+                // NotifyIcon.Icon = 
             }
         }
         
@@ -123,7 +146,7 @@ namespace FrenchTypeHelper_WPF
 
         private void Setting_OnClick(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Visibility.Visible;
+            _settingWindow.Visibility = Visibility.Visible;
         }
 
         private void NotifyIcon_OnLoaded(object sender, RoutedEventArgs e)
