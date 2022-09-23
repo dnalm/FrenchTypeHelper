@@ -5,9 +5,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Resources;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using FrenchTypeHelper_WPF.KeyOperator;
+using FrenchTypeHelper_WPF.Utils;
 using FrenchTypeHelper_WPF.Views;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
@@ -102,7 +108,7 @@ namespace FrenchTypeHelper_WPF
             _hotKeyOperator = new HotKeyOperator(this);
             _hotKeyOperator.SwitchStatusHotKey = new HotKeyCombination(true, false, false, Keys.OemQuotes);
             
-            
+          
             SwitchStatus(true);
             _hotKeyOperator.Enabled = true;
         }
@@ -119,15 +125,15 @@ namespace FrenchTypeHelper_WPF
             {
                 StatusMenuItem.Header = "Enabled";
                 // todo
-                // StatusMenuItem.Icon = 
-                // NotifyIcon.Icon = 
+                // StatusMenuItem.Icon = Resource.system_icon_enabled;
+                NotifyIcon.Icon = ImageUtil.BitmapToBitmapSource(Resource.system_icon_enabled);
             }
             else
             {
                 StatusMenuItem.Header = "Disabled";
                 // todo
-                // StatusMenuItem.Icon = 
-                // NotifyIcon.Icon = 
+                // StatusMenuItem.Icon = Resource.system_icon_disabled;
+                NotifyIcon.Icon = ImageUtil.BitmapToBitmapSource(Resource.system_icon_disabled);
             }
         }
         

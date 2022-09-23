@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="SettingWindow" Height="450" Width="800" ResizeMode="NoResize">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="50" UseAeroCaptionButtons="False"/>
+        <WindowChrome CaptionHeight="10" UseAeroCaptionButtons="False"/>
     </WindowChrome.WindowChrome>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -32,13 +32,13 @@
             <!-- <Image Source=></Image> -->
         </Button>
         
-        <hc:SideMenu BorderThickness="1" Width="200" Margin="5" Grid.Column="0" Grid.Row="1">
-            <hc:SideMenuItem Header="System" IsSelected="True"></hc:SideMenuItem>
-            <hc:SideMenuItem Header="HotKey"></hc:SideMenuItem>
-            <hc:SideMenuItem Header="Mapping"></hc:SideMenuItem>
-            <hc:SideMenuItem Header="Interrupt"></hc:SideMenuItem>
+        <hc:SideMenu BorderThickness="1" Width="200" Margin="5" Grid.Column="0" Grid.Row="1" SelectionChanged="SideMenu_OnSelectionChanged">
+            <hc:SideMenuItem x:Name="SystemSideMenuItem" Header="System"/>
+            <hc:SideMenuItem x:Name="HotkeySideMenuItem" Header="HotKey"></hc:SideMenuItem>
+            <hc:SideMenuItem x:Name="MappingSideMenuItem" Header="Mapping"></hc:SideMenuItem>
+            <hc:SideMenuItem x:Name="InterruptSideMenuItem" Header="Interrupt"></hc:SideMenuItem>
         </hc:SideMenu>
         
-        <Frame Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="SettingFrame"/>
+        <Frame Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="SettingFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

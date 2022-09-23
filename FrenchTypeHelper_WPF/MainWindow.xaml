@@ -28,7 +28,7 @@
         <!--     </hc:Interaction.Triggers> -->
         <!-- </hc:NotifyIcon> -->
         <!-- <hc:NotifyIcon Text="HandyControl" IsBlink="true" Visibility="Visible" Icon="/HandyControlDemo;component/Resources/Img/icon-white.ico"/> -->
-        <hc:NotifyIcon Text="French Type Helper" Visibility="Visible" Loaded="NotifyIcon_OnLoaded" x:Name="NotifyIcon">
+        <hc:NotifyIcon Text="French Type Helper" Visibility="Visible" Loaded="NotifyIcon_OnLoaded" x:Name="NotifyIcon"  >
             <hc:NotifyIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="StatusMenuItem" Click="Status_OnClick"/>

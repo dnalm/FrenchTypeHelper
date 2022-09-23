@@ -16,6 +16,15 @@
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         
-        <StackPanel Grid.Row="1" Grid.Column="1"></StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox/>
+                <Label Content="Auto run when system startup." BorderThickness="0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox/>
+                <Label Content="Enable mapping functions when program startup." BorderThickness="0"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
