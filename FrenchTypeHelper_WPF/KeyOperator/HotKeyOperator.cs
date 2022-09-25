@@ -1,25 +1,38 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using FrenchTypeHelper_WPF.Views.SettingPage;
 using Gma.System.MouseKeyHook;
 
 namespace FrenchTypeHelper_WPF.KeyOperator
 {
     public class HotKeyOperator: IKeyOperator
     {
-        private IHotkeyObserver _hotkeyObserver;
-        
-        public HotKeyCombination SwitchStatusHotKey { get; set; }
+        private List<IHotkeyObserver> _hotkeyObservers;
 
-        public HotKeyOperator(IHotkeyObserver hotkeyObserver)
+        private SettingWindow _settingWindow;
+        
+        // public HotKeyCombination SwitchStatusHotKey { get; set; }
+
+
+
+        public HotKeyOperator(List<IHotkeyObserver> hotkeyObserverses, SettingWindow settingWindow)
         {
-            _hotkeyObserver = hotkeyObserver;
+            _hotkeyObservers = hotkeyObserverses;
+            _settingWindow = settingWindow;
+            // SwitchStatusHotKey
         }
         
         private void GlobalHookKeyDown(object sender, KeyEventArgs e)
         {
-            if (SwitchStatusHotKey != null && SwitchStatusHotKey.EqualToKeyEventArgs(e))
+            if (_settingWindow.IsHotkeyEnable && _settingWindow.Hotkey != null && _settingWindow.Hotkey.EqualToKeyEventArgs(e))
             {
-                _hotkeyObserver.NotifySwitchStatus();
+                _hotkeyObservers.ForEach(o => o.NotifySwitchStatus());
+            }
+
+            if (e.Control || e.Alt)
+            {
+                _hotkeyObservers.ForEach(o => o.NotifyInterrupt());
             }
 
             ;Console.WriteLine(e);
@@ -43,6 +56,7 @@ namespace FrenchTypeHelper_WPF.KeyOperator
     public interface IHotkeyObserver
     {
         void NotifySwitchStatus();
+        void NotifyInterrupt();
     }
 
     public class HotKeyCombination
@@ -50,20 +64,41 @@ namespace FrenchTypeHelper_WPF.KeyOperator
         public bool Control { set; get; } = false;
         public bool Alt { set; get; } = false;
         public bool Shift { set; get; } = false;
-        public Keys? KeyCode { set; get; }
+        private string keyStr;
 
-        public HotKeyCombination(bool control, bool alt, bool shift, Keys? keyCode)
+        public string KeyStr
+        {
+            get => keyStr;
+            set
+            {
+                keyStr = value;
+                Keys.TryParse(value, out KeyCode);
+            }
+        }
+        public Keys KeyCode;
+
+
+        public HotKeyCombination(bool control, bool alt, bool shift, string keyStr)
         {
             Control = control;
             Alt = alt;
             Shift = shift;
-            KeyCode = keyCode;
+            KeyStr = keyStr;
         }
 
         public bool EqualToKeyEventArgs(KeyEventArgs other)
         {
             return Control == other.Control && Alt == other.Alt && KeyCode == other.KeyCode;
         }
-        
+
+        public override string ToString()
+        {
+            List<string> keys = new List<string>();
+            if(Control) keys.Add("Ctrl");
+            if(Alt) keys.Add("Alt");
+            if(Shift) keys.Add("Shift");
+            keys.Add(KeyStr);
+            return string.Join("+", keys);
+        }
     } 
 }

@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FrenchTypeHelper_WPF")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("FrenchTypeHelper")]
+[assembly: AssemblyDescription("A easy way to type French accents.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FrenchTypeHelper_WPF")]
+[assembly: AssemblyProduct("FrenchTypeHelper")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
