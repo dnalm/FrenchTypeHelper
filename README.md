@@ -1,5 +1,5 @@
 ﻿# French Type Helper
----
+
 A French Accent Tool for Windows.  
 You Could type French Accents easily without French IME.
 
