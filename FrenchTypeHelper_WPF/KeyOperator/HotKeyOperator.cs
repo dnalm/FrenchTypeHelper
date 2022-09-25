@@ -30,7 +30,7 @@ namespace FrenchTypeHelper_WPF.KeyOperator
                 _hotkeyObservers.ForEach(o => o.NotifySwitchStatus());
             }
 
-            if (e.Control || e.Alt || e.Shift)
+            if (e.Control || e.Alt)
             {
                 _hotkeyObservers.ForEach(o => o.NotifyInterrupt());
             }
