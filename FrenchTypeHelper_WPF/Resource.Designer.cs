@@ -61,6 +61,54 @@ namespace FrenchTypeHelper_WPF {
         }
         
         /// <summary>
+        ///   查找类似 [system]
+        ///AutoRun=true
+        ///EnableWhenStart=true
+        ///
+        ///[hotkey_switch]
+        ///Enable=true
+        ///Hotkey=Ctrl+OemQuotes
+        ///
+        ///[mapping_grave]
+        ///Enable=true
+        ///BaseChar=AaEeUu
+        ///QuickChar=]
+        ///
+        ///[mapping_acute]
+        ///Enable=true
+        ///BaseChar=eE
+        ///QuickChar=[
+        ///
+        ///[mapping_circumflex]
+        ///Enable=true
+        ///BaseChar=AaEeUuOoIi
+        ///QuickChar=-
+        ///
+        ///[mapping_cedilla]
+        ///Enable=true
+        ///BaseChar=cC
+        ///QuickChar=/
+        ///
+        ///[mapping_diaeresis]
+        ///Enable=true
+        ///BaseChar=eEuUuIi
+        ///QuickChar==
+        ///
+        ///[mapping_open_quote]
+        ///Enable=true
+        ///QuickChar=&lt;
+        ///
+        ///[mapping_close_quote]
+        ///Enable=true
+        ///Quick [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string conifg {
+            get {
+                return ResourceManager.GetString("conifg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap system_icon_disabled {
@@ -76,6 +124,16 @@ namespace FrenchTypeHelper_WPF {
         internal static System.Drawing.Bitmap system_icon_enabled {
             get {
                 object obj = ResourceManager.GetObject("system_icon_enabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap window_close {
+            get {
+                object obj = ResourceManager.GetObject("window_close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

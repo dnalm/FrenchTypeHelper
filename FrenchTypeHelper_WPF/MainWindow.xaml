@@ -8,27 +8,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1" Width="1">
     
-
-    
     <Grid>
-        <!-- <hc:NotifyIcon x:Name="NotifyIconContextContent" -->
-        <!--                Text="French Type Helper!!!!!" -->
-        <!--                Visibility="Visible" -->
-        <!--                Icon="/Images/logo.ico"> -->
-        <!--     <hc:NotifyIcon.ContextMenu> -->
-        <!--         <ContextMenu> -->
-        <!--             <MenuItem  Header="Setting"/> -->
-        <!--             <MenuItem  Header="Exit!" Click="Exit_OnClick"/> -->
-        <!--         </ContextMenu> -->
-        <!--     </hc:NotifyIcon.ContextMenu> -->
-        <!--     <hc:Interaction.Triggers> -->
-        <!--         <hc:EventTrigger EventName="Click"> -->
-        <!--             <hc:EventToCommand Command="hc:ControlCommands.PushMainWindow2Top"/> -->
-        <!--         </hc:EventTrigger> -->
-        <!--     </hc:Interaction.Triggers> -->
-        <!-- </hc:NotifyIcon> -->
-        <!-- <hc:NotifyIcon Text="HandyControl" IsBlink="true" Visibility="Visible" Icon="/HandyControlDemo;component/Resources/Img/icon-white.ico"/> -->
-        <hc:NotifyIcon Text="French Type Helper" Visibility="Visible" Loaded="NotifyIcon_OnLoaded" x:Name="NotifyIcon"  >
+        <hc:NotifyIcon Text="French Type Helper" Visibility="Visible" Loaded="NotifyIcon_OnLoaded" x:Name="NotifyIcon" >
             <hc:NotifyIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="StatusMenuItem" Click="Status_OnClick"/>
@@ -38,4 +19,5 @@
             </hc:NotifyIcon.ContextMenu>
         </hc:NotifyIcon>
     </Grid>
+    
 </Window>

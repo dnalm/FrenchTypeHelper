@@ -1,44 +1,209 @@
-﻿<Window x:Class="FrenchTypeHelper_WPF.Views.SettingWindow"
+﻿<Window x:Class="FrenchTypeHelper_WPF.Views.SettingPage.SettingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:FrenchTypeHelper_WPF.Views"
         xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:frenchTypeHelperWpf="clr-namespace:FrenchTypeHelper_WPF"
         mc:Ignorable="d"
-        Title="SettingWindow" Height="450" Width="800" ResizeMode="NoResize">
+        Title="SettingWindow" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="10" UseAeroCaptionButtons="False"/>
+        <WindowChrome CaptionHeight="30" UseAeroCaptionButtons="False"/>
     </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Style TargetType="{x:Type ComboBox}" x:Key="DictComboBoxStyle" BasedOn="{StaticResource ComboBoxExtend}">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Key}"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         
-        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="#66ccFF"></Border>
-        
+        <!-- header -->
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#66ccFF"></Border>
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="French Type Helper" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Background="#66ccff"/>
-           
         
+        <!-- side menu -->
+
         
-        <Button Grid.Row="0" Grid.Column="2" Width="30" Click="Exit_OnClick">
-            <!-- todo close image x -->
-            <!-- <Image Source=></Image> -->
-        </Button>
+            <hc:ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <!-- system -->
+                    <Label Content="System" HorizontalAlignment="Left" BorderThickness="0"/>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <CheckBox x:Name="AutoRunComBox" Content="Auto run when system startup."  VerticalAlignment="Center" Checked="AutoRun_OnChanged" Unchecked="AutoRun_OnChanged"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <CheckBox x:Name="EnableWhenStartup" Content="Enable mapping functions when program startup." Checked="EnableWhenStartup_OnChanged" Unchecked="EnableWhenStartup_OnChanged"/>
+                    </StackPanel>
+                    <!-- hotkey -->
+                    <Separator />
+                    <CheckBox Name="HotkeyCheckBox" Content="Hotkey - enable/disable mapping functions" HorizontalAlignment="Left" Checked="HotkeyCheckBox_OnChanged" Unchecked="HotkeyCheckBox_OnChanged"/>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                        <CheckBox x:Name="HotkeyCtrl" Content="Ctrl"  IsEnabled="True" VerticalAlignment="Center" Checked="HotkeyCtrl_OnChanged" Unchecked="HotkeyCtrl_OnChanged"/>
+                        <Label Content="+" BorderThickness="0"/>
+                        <CheckBox x:Name="HotkeyAlt" Content="Alt" Checked="HotkeyAlt_OnChanged" Unchecked="HotkeyAlt_OnChanged"/>
+                        <Label Content="+" BorderThickness="0"/>
+                        <CheckBox x:Name="HotkeyShift" Content="Shift" Checked="HotkeyShift_OnChanged" Unchecked="HotkeyShift_OnChanged"/>
+                        <Label Content="+" BorderThickness="0"/>
+                        <ComboBox x:Name="HotKeyKeyCode" Width="150" SelectionChanged="HotKeyKeyCode_OnSelectionChanged"/>
+                    </StackPanel>
+           <!-- mapping          -->
+                    <Separator />
+                    <Label Content="Mapping" HorizontalAlignment="Left" BorderThickness="0"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox x:Name="GraveAccentCheckBox" Content="Grave Accent" Width="140" VerticalAlignment="Center" Checked="Mapping_OnChanged" Unchecked="Mapping_OnChanged"/>
+                <Label Content="ò" BorderThickness="0" VerticalAlignment="Center"/>
+                <Label Content="=" BorderThickness="0" VerticalAlignment="Center"/>
+                <hc:CheckComboBox Width="200" Name="GraveAccentCheckComboBox" VerticalAlignment="Center" SelectionChanged="Mapping_OnChanged"/>
+                <Label Content="+" BorderThickness="0"   VerticalAlignment="Center"/>
+                <ComboBox  x:Name="GraveQuickComboBox" Style="{StaticResource DictComboBoxStyle}" SelectionChanged="MappingQuickComboBox_OnSelectionChanged" VerticalAlignment="Center">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsEnabled" Value="{Binding Value}"></Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox x:Name="AcuteAccentCheckBox" Content="Acute Accent" Width="140" VerticalAlignment="Center" Checked="Mapping_OnChanged" Unchecked="Mapping_OnChanged"/>
+                <Label Content="ó" BorderThickness="0" VerticalAlignment="Center"/>
+                <Label Content="=" BorderThickness="0" VerticalAlignment="Center"/>
+                <hc:CheckComboBox Width="200" Name="AcuteAccentCheckComboBox" VerticalAlignment="Center" SelectionChanged="Mapping_OnChanged"/>
+                <Label Content="+" BorderThickness="0"   VerticalAlignment="Center"/>
+                <ComboBox  x:Name="AcuteQuickComboBox" Style="{StaticResource DictComboBoxStyle}" SelectionChanged="MappingQuickComboBox_OnSelectionChanged" VerticalAlignment="Center">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsEnabled" Value="{Binding Value}"></Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox x:Name="CircumflexAccentCheckBox" Content="Circumflex Accent" Width="140" VerticalAlignment="Center" Checked="Mapping_OnChanged" Unchecked="Mapping_OnChanged"/>
+                <Label Content="ô" BorderThickness="0" VerticalAlignment="Center"/>
+                <Label Content="=" BorderThickness="0" VerticalAlignment="Center"/>
+                <hc:CheckComboBox Width="200" Name="CircumflexAccentCheckComboBox" VerticalAlignment="Center" SelectionChanged="Mapping_OnChanged"/>
+                <Label Content="+" BorderThickness="0"   VerticalAlignment="Center"/>
+                <ComboBox  x:Name="CircumflexQuickComboBox" Style="{StaticResource DictComboBoxStyle}" SelectionChanged="MappingQuickComboBox_OnSelectionChanged" VerticalAlignment="Center">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsEnabled" Value="{Binding Value}"></Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox  x:Name="CedillaAccentCheckBox" Content="Cedilla Accent" Width="140"  VerticalAlignment="Center" Checked="Mapping_OnChanged" Unchecked="Mapping_OnChanged"/>
+                <Label Content="ç" BorderThickness="0"  VerticalAlignment="Center"/>
+                <Label Content="=" BorderThickness="0" VerticalAlignment="Center"/>
+                <hc:CheckComboBox Width="200" Name="CedillaAccentCheckComboBox" VerticalAlignment="Center" SelectionChanged="Mapping_OnChanged"/>
+                <Label Content="+" BorderThickness="0"   VerticalAlignment="Center"/>
+                <ComboBox  x:Name="CedillaQuickComboBox" Style="{StaticResource DictComboBoxStyle}" SelectionChanged="MappingQuickComboBox_OnSelectionChanged" VerticalAlignment="Center">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsEnabled" Value="{Binding Value}"></Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox  x:Name="DiaeresisAccentCheckBox"  Content="Diaeresis Accent" Width="140" VerticalAlignment="Center" Checked="Mapping_OnChanged" Unchecked="Mapping_OnChanged"/>
+                <Label Content="ö" BorderThickness="0" VerticalAlignment="Center"/>
+                <Label Content="=" BorderThickness="0" VerticalAlignment="Center"/>
+                <hc:CheckComboBox Width="200" Name="DiaeresisAccentCheckComboBox" VerticalAlignment="Center" SelectionChanged="Mapping_OnChanged"/>
+                <Label Content="+" BorderThickness="0"  VerticalAlignment="Center" />
+                <ComboBox  x:Name="DiaeresisQuickComboBox" Style="{StaticResource DictComboBoxStyle}" SelectionChanged="MappingQuickComboBox_OnSelectionChanged" VerticalAlignment="Center">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsEnabled" Value="{Binding Value}"></Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox x:Name="OpenQuoteCheckBox"  Content="Open Quote" Width="140" VerticalAlignment="Center" Checked="Mapping_OnChanged" Unchecked="Mapping_OnChanged"/>
+                <Label Content="«" BorderThickness="0" VerticalAlignment="Center"/>
+                <Label Content="=" BorderThickness="0" VerticalAlignment="Center"/>
+                <Label Content="&lt;" BorderThickness="0" VerticalAlignment="Center"/>
+                <Label Content="+" BorderThickness="0"  VerticalAlignment="Center" />
+                <ComboBox  x:Name="OpenQuoteQuickComboBox" Style="{StaticResource DictComboBoxStyle}" SelectionChanged="MappingQuickComboBox_OnSelectionChanged" VerticalAlignment="Center">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsEnabled" Value="{Binding Value}"></Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox x:Name="CloseQuoteCheckBox"  Content="Close Quote" Width="140" VerticalAlignment="Center" Checked="Mapping_OnChanged" Unchecked="Mapping_OnChanged"/>
+                <Label Content="»" BorderThickness="0"  VerticalAlignment="Center"/>
+                <Label Content="= " BorderThickness="0" VerticalAlignment="Center"/>
+                <Label Content="&gt;" BorderThickness="0"   VerticalAlignment="Center"/>
+                <Label Content="+" BorderThickness="0"  VerticalAlignment="Center" />
+                <ComboBox  x:Name="CloseQuoteQuickComboBox" Style="{StaticResource DictComboBoxStyle}" SelectionChanged="MappingQuickComboBox_OnSelectionChanged" VerticalAlignment="Center">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="IsEnabled" Value="{Binding Value}"></Setter>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+                    
+                    <!-- interrupt -->
+            <Separator />
+            <Label Content="Interrupt" HorizontalAlignment="Left" BorderThickness="0" Visibility="Hidden"/>
+            <Label HorizontalAlignment="Left" BorderThickness="0" Content="These events will interrupt mapping process. It may avoid unexpected BACKSPACE." Visibility="Hidden"/>
+                    <StackPanel Orientation="Horizontal" Visibility="Hidden">
+                        <CheckBox/>
+                        <Label Content="Mouse is moved." BorderThickness="0" Visibility="Hidden"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Visibility="Hidden">
+                        <CheckBox/>
+                        <Label Content="Mouse is clicked." BorderThickness="0" Visibility="Hidden"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Visibility="Hidden">
+                        <CheckBox/>
+                        <Label Content="Functional keys pressed (like Ctrl, Alt, etc.)." BorderThickness="0"/>
+                    </StackPanel>
+                </StackPanel>
+            </hc:ScrollViewer>
+            <!-- foot buttons -->
+            <Grid Grid.Column="1" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                
+                <Button Grid.Row="1" Grid.Column="2" Content="Close" Click="Exit_OnClick"/>
+            </Grid>
         
-        <hc:SideMenu BorderThickness="1" Width="200" Margin="5" Grid.Column="0" Grid.Row="1" SelectionChanged="SideMenu_OnSelectionChanged">
-            <hc:SideMenuItem x:Name="SystemSideMenuItem" Header="System"/>
-            <hc:SideMenuItem x:Name="HotkeySideMenuItem" Header="HotKey"></hc:SideMenuItem>
-            <hc:SideMenuItem x:Name="MappingSideMenuItem" Header="Mapping"></hc:SideMenuItem>
-            <hc:SideMenuItem x:Name="InterruptSideMenuItem" Header="Interrupt"></hc:SideMenuItem>
-        </hc:SideMenu>
-        
-        <Frame Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" x:Name="SettingFrame" NavigationUIVisibility="Hidden"/>
+
     </Grid>
 </Window>
