@@ -5,7 +5,8 @@ A French Accent Tool for Windows.
 You Could type French Accents easily without French IME.  
 ![](images/type_example.gif)
 ## Usage 
-step1: [download a latest version release](https://github.com/dnalm/FrenchTypeHelper/releases)  
+step1: download the latest release  [[From Github]](https://github.com/dnalm/FrenchTypeHelper/releases) [[From Gitee]](https://gitee.com/dreamness/FrenchTypeHelper/releases)
+
 step2: unzip it, move it to somewhere you love  
 step3: just run `FrenchTypeHelper_WPF.exe` !  
 

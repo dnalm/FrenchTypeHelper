@@ -6,7 +6,7 @@
  
 ![](images/type_example.gif)
 ## 使用帮助 
-step1: [下载最新版本](https://github.com/dnalm/FrenchTypeHelper/releases)   
+step1: 下载最新版本 [[在Github中下载]](https://github.com/dnalm/FrenchTypeHelper/releases) [[在Gitee中下载]](https://gitee.com/dreamness/FrenchTypeHelper/releases)   
 step2: 解压缩, 并将文件放到合适的位置  
 step3: 运行可执行文件 `FrenchTypeHelper_WPF.exe` !    
 
