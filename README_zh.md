@@ -5,7 +5,7 @@
 使用该软件可以轻松快速地输入法语变音符号, 甚至可以中/英/法混输! 无需使用繁琐的法语输入法!  
  
 ![](images/type_example.gif)
-## Usage 
+## 使用帮助 
 step1: [下载最新版本](https://github.com/dnalm/FrenchTypeHelper/releases)   
 step2: 解压缩, 并将文件放到合适的位置  
 step3: 运行可执行文件 `FrenchTypeHelper_WPF.exe` !    
@@ -13,7 +13,7 @@ step3: 运行可执行文件 `FrenchTypeHelper_WPF.exe` !
 如果想要修改快捷键, 可以右键点击系统托盘图标.  
 ![](images/system_icon.gif)
 
-## 使用帮助 (默认配置)
+## 使用指南 (默认配置)
 |               | 输入                                | 结果                            |
 |---------------|-----------------------------------|-------------------------------|
 | 快捷键           | **Ctrl** + **'**(quote)           | **enabled** / **disabled**    |
