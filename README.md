@@ -1,4 +1,5 @@
 ﻿# French Type Helper
+[English]  [[中文]](./README_zh.md)
 
 A French Accent Tool for Windows.  
 You Could type French Accents easily without French IME.  
